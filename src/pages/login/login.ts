@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angular';
-
+import { Component,ViewChild } from '@angular/core';
+import { IonicPage, NavController,Navbar, NavParams,ViewController,Events } from 'ionic-angular';
+import { FormBuilder, Validators } from '@angular/forms';
 /**
  * Generated class for the LoginPage page.
  *
@@ -13,18 +13,38 @@ import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angula
   templateUrl: 'login.html',
 })
 export class LoginPage {
-
+  public login:any='basic'
+  public country:any=''
+  public loginForm = this.fb.group({
+    country:[this.country],
+    petname: ["", Validators.required],
+    password: ["", Validators.required]
+  });
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public viewCtrl:ViewController
+    public viewCtrl:ViewController,
+    public fb: FormBuilder,
+    public events:Events
     ) {
+     
+
+  }
+ 
+  ionViewDidLoad() {
+     this.events.subscribe('country',data=>{
+       this.country=data
+    })
+    
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
   dismiss(){
     this.viewCtrl.dismiss()
+  }
+  doLogin(event) {
+    console.log(this.loginForm.value);
+  }
+  openCountry(){
+    this.navCtrl.push('CountryPage')
   }
 }

@@ -6,17 +6,64 @@
 -->
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>login</ion-title>
+    <ion-title>登录</ion-title>
     <ion-buttons end>
       <button icon-only ion-button (click)="dismiss()">
         <ion-icon name="close" ></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content class="outer-content" fullscreen='true'>
+  <div padding-top padding-left padding-right>
+    <ion-segment [(ngModel)]="login">
+      <ion-segment-button value="basic">
+        账号密码登录
+      </ion-segment-button>
+      <ion-segment-button value="mobile">
+        手机号快捷登录
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div [ngSwitch]="login">
+    <form [formGroup]="loginForm" (ngSubmit)="doLogin($event)" *ngSwitchCase="'basic'">
+      <ion-card>
+        <ion-item>
+          <ion-label >账户</ion-label>
+          <ion-input formControlName="petname" type="text" placeholder="您的用户名" text-end disabled></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label >密码</ion-label>
+          <ion-input formControlName="password" type="password" placeholder="您的密码"></ion-input>
+        </ion-item>
+      </ion-card>
+      <div padding-left padding-right>
+        <button type="submit" ion-button block >登录</button>
+        <button clear float-left ion-button small type="button">10秒免费注册</button><button type="button" clear float-right ion-button small>忘记密码</button>
+      </div>
+    </form>
+    <form [formGroup]="loginForm" (ngSubmit)="doLogin($event)" *ngSwitchCase="'mobile'">
+      <ion-card>
+        <button (click)="openCountry()" ion-item>
+          <ion-label>国家地区</ion-label>
+          <ion-input type="text" text-right formControlName="country" [(ngModel)]="country" disabled></ion-input>
+        </button>
+        <ion-item > 
+          <ion-label >账户</ion-label>
+          <ion-input formControlName="petname" type="text" placeholder="您的用户名"></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label >密码</ion-label>
+          <ion-input formControlName="password" type="password" placeholder="您的密码"></ion-input>
+        </ion-item>
+      </ion-card>
+      <div padding-left padding-right>
+        <button type="submit" ion-button block >登录</button>
+        <button clear float-left ion-button small type="button">10秒免费注册</button>
+      </div>
+    </form>
+  </div>
 </ion-content>

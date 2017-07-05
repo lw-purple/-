@@ -26,6 +26,6 @@ export class UserPage {
     this.modalCtrl.create('LoginPage',{},{cssClass:'modal'}).present()
   }
   Register(){
-    this.modalCtrl.create('Register').present()
+    this.modalCtrl.create('RegisterPage').present()
   }
 }
