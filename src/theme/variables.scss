@@ -10,7 +10,8 @@ $font-path: "../assets/fonts";
 // rtl styles in your app. For more info, please see:
 // http://ionicframework.com/docs/theming/rtl-support/
 $app-direction: ltr;
-
+$card-ios-box-shadow:0;
+$card-md-box-shadow:0;
 
 @import "ionic.globals";
 

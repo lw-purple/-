@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
  * Generated class for the UserPage page.
@@ -16,16 +16,15 @@ export class UserPage {
 
   constructor(
     public navCtrl: NavController,
-    public modalCtrl:ModalController
     ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserPage');
   }
   Login(){
-    this.modalCtrl.create('LoginPage',{},{cssClass:'modal'}).present()
+    this.navCtrl.push('LoginPage')
   }
   Register(){
-    this.modalCtrl.create('RegisterPage').present()
+    this.navCtrl.push('RegisterPage')
   }
 }

@@ -58,7 +58,7 @@ export class CountryPage {
   }
   do(name, number) {
     let data = name + number
-    this.events.publish('country', data)
+    this.events.publish(this.navParams.data.status+':country', data)
     this.navCtrl.pop()
   }
 }
