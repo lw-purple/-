@@ -13,8 +13,21 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'home.html',
 })
 export class HomePage {
-
+   public images:any=[]
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+     this.images=[{
+        url:'assets/image/1 (1).jpg'
+      },{
+        url:'assets/image/1 (2).jpg'
+      },{
+        url:'assets/image/1 (3).jpg'
+      },{
+        url:'assets/image/1 (4).jpg'
+      },{
+        url:'assets/image/1 (5).jpg'
+      },{
+        url:'assets/image/1 (6).jpg'
+      }]
   }
 
   ionViewDidLoad() {

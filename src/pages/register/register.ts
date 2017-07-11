@@ -19,9 +19,10 @@ export class RegisterPage {
   registerForm:any
   constructor(public navCtrl: NavController,public events: Events, public navParams: NavParams) {
   this.registerForm = new FormGroup({
-    country: new FormControl('', Validators.minLength(2)),
-    mobile: new FormControl('', Validators.minLength(2)),
-    Ver_code: new FormControl('', Validators.minLength(2))
+    country: new FormControl(this.country, Validators.required),
+    mobile: new FormControl('13755555555', Validators.required),
+    Ver_code: new FormControl('', Validators.required),
+    agreement:new FormControl(true, [Validators.requiredTrue]),
   });
 }
 
@@ -31,7 +32,7 @@ export class RegisterPage {
     })
   }
   doLogin(){
-
+    console.log(this.registerForm.value)
   }
   getVerCode() {
     if (!this.isVering) {

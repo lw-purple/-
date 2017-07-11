@@ -23,8 +23,9 @@
     </ion-segment>
   </div>
   <div [ngSwitch]="login">
-    <form [formGroup]="loginForm" (ngSubmit)="doLogin($event)">
-      <div *ngSwitchCase="'basic'">
+
+    <div *ngSwitchCase="'basic'">
+      <form [formGroup]="baseLoginForm" (ngSubmit)="doLogin($event)">
         <ion-card>
           <ion-item style="border-bottom:1px solid #dfdfdf;">
             <ion-label>账户</ion-label>
@@ -36,12 +37,14 @@
           </ion-item>
         </ion-card>
         <div padding-left padding-right>
-          <button type="submit" ion-button block>登录</button>
+          <button type="submit" ion-button block [disabled]="!baseLoginForm.valid">登录</button>
           <button clear float-left ion-button small type="button" (click)="openRegister()">10秒免费注册</button>
           <button type="button" clear float-right ion-button small (click)="openForgetPassword()">忘记密码</button>
         </div>
-      </div>
-      <div *ngSwitchCase="'mobile'">
+      </form>
+    </div>
+    <div *ngSwitchCase="'mobile'">
+      <form [formGroup]="mobileLoginForm" (ngSubmit)="doLogin($event)">
         <ion-card>
           <button (click)="openCountry()" ion-item style="border-bottom:1px solid #dfdfdf;">
             <ion-label>国家地区</ion-label>
@@ -54,23 +57,24 @@
           <ion-item>
             <ion-label>校验码</ion-label>
             <ion-input formControlName="Ver_code" type="text" placeholder="请输入校验码"></ion-input>
-            <button item-end ion-button outline type="button" [disabled]="isVering" (click)="getVerCode()" style="min-width:67px;" >{{verButton}}</button>
+            <button item-end ion-button outline type="button" [disabled]="isVering" (click)="getVerCode()" style="min-width:67px;">{{verButton}}</button>
           </ion-item>
         </ion-card>
         <div padding-left padding-right>
-          <button type="submit" ion-button block>登录</button>
+          <button type="submit" ion-button block [disabled]="!mobileLoginForm.valid">登录</button>
           <button clear float-left ion-button small type="button" (click)="openRegister()">10秒免费注册</button>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
+
   </div>
   <div text-center style="bottom:10px;position:absolute;width:100%;">
     <span>合作网站账号登录</span>
-    <div style="display:flex;     justify-content: space-around;" >
-        <button ion-fab mini> <ion-icon name="add"></ion-icon></button>
-        <button ion-fab mini> <ion-icon name="add"></ion-icon></button>
-        <button ion-fab mini> <ion-icon name="add"></ion-icon></button>
-        <button ion-fab mini> <ion-icon name="add"></ion-icon></button>
+    <div style="display:flex;     justify-content: space-around;">
+      <button ion-fab mini> <ion-icon name="add"></ion-icon></button>
+      <button ion-fab mini> <ion-icon name="add"></ion-icon></button>
+      <button ion-fab mini> <ion-icon name="add"></ion-icon></button>
+      <button ion-fab mini> <ion-icon name="add"></ion-icon></button>
     </div>
   </div>
 </ion-content>

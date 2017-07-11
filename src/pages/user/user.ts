@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component,ViewChild,NgZone  } from '@angular/core';
+import { IonicPage, NavController, NavParams,Content } from 'ionic-angular';
 
 /**
  * Generated class for the UserPage page.
@@ -13,13 +13,27 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'user.html',
 })
 export class UserPage {
-
+  public headerColor:any
+  public images:any=[]
+  @ViewChild(Content) content: Content;
   constructor(
     public navCtrl: NavController,
-    ) {}
+    public zone: NgZone
+    ) {
+     
+    }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad UserPage');
+    
+  }
+  scrollHandler($event){
+    this.zone.run(()=>{
+     if($event.scrollTop >= 500){
+       this.headerColor='rgba(000,255,000,1)'
+     }else{
+     this.headerColor='rgba(000,255,000,'+( $event.scrollTop / 500) + ')'       
+     }
+    })
   }
   Login(){
     this.navCtrl.push('LoginPage')

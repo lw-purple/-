@@ -31,11 +31,11 @@
       </ion-item>
     </ion-card>
     <div padding-horizontal  >
-      <ion-checkbox checked="isChecked" style="vertical-align:-5px;"></ion-checkbox>
+      <ion-checkbox  formControlName="agreement" style="vertical-align:-5px;"></ion-checkbox>
       <span style="padding-left:3px">我已阅读并同意 <span style="color:blue;"  (click)="openUserAgreement()">《窗用户使用协议》</span></span>
     </div>
     <div padding-horizontal style="margin-top:12px;">
-      <button color="primary" ion-button block>下一步 </button>
+      <button color="primary" ion-button block [disabled]="!registerForm.valid ">下一步 </button>
     </div>
   </form>
 

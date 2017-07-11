@@ -1,3 +1,20 @@
 page-home {
-
+    ion-title{
+        padding-left: 10px!important;
+    }
+    ion-searchbar{
+        border: 0.55px solid white!important;
+        border-radius: 22px;
+        min-height: 30px!important;
+        input{
+            height: 2.5rem!important;
+        }
+    }
+    .scroll-content{
+        padding-top: 0!important;
+        ion-slides{
+            height: 150px;
+        }
+        
+    }
 }

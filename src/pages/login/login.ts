@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, Navbar, NavParams, Events } from 'ionic-angular';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormGroup,Validators,FormControl } from '@angular/forms';
 /**
  * Generated class for the LoginPage page.
  *
@@ -17,20 +17,24 @@ export class LoginPage {
   public country: any = '中国大陆+86'
   public verButton: any = '获取校验码'
   public isVering: Boolean = false
-  public loginForm = this.fb.group({
-    country: [this.country],
-    petname: ["", Validators.required],
-    password: ["", Validators.required],
-    mobile: ["", Validators.required],
-    Ver_code: ["", Validators.required]
-  });
+   baseLoginForm:any
+   mobileLoginForm:any
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public fb: FormBuilder,
     public events: Events
   ) {
-
+    this.baseLoginForm = new FormGroup({
+    
+    petname: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+   
+  });
+  this.mobileLoginForm= new FormGroup({
+    country: new FormControl(this.country, Validators.required),
+     mobile: new FormControl('', [Validators.required,Validators.pattern( /^1[34578]\d{9}$/)]),
+    Ver_code: new FormControl('', Validators.required),
+  })
 
   }
 
@@ -61,7 +65,6 @@ export class LoginPage {
   }
   doLogin(event) {
     console.log(this.login)
-    console.log(this.loginForm.value);
   }
   openCountry() {
     this.navCtrl.push('CountryPage',{status:'login'})
